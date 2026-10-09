@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>Worlds You Step Into — AR/VR Concepts &amp; Narratives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#0C0C0C;--line:#2A2A2A;--text:#F2F0EB;--muted:#8a8a8a;--dim:#3a3a3a;--accent:#E8E4D9;--green:#4ADE80;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-weight:300;min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px 100px}
+@media(min-width:600px){.wrap{padding:0 40px 100px}}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:.5px solid var(--line);margin-bottom:48px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+@media(min-width:600px){nav{padding:28px 0;margin-bottom:72px}}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
+.nav-name{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--muted);text-transform:uppercase}
+.nav-links{display:flex;gap:16px}
+@media(min-width:600px){.nav-links{gap:28px}}
+.nav-link{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--muted);text-transform:uppercase;cursor:pointer;transition:color .2s;background:none;border:none;padding:6px 0}
+.nav-link:hover,.nav-link.active{color:var(--text)}
+.nav-link:focus-visible,.work-item:focus-visible{outline:1px solid var(--green);outline-offset:3px}
+.hero{margin-bottom:48px}
+@media(min-width:600px){.hero{margin-bottom:72px}}
+.hero-label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:16px}
+.hero-name{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(44px,12vw,92px);line-height:1.02;margin-bottom:24px;font-weight:400}
+.hero-name em{font-style:italic;color:var(--muted)}
+.hero-bio{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:24px}
+@media(min-width:600px){.hero-bio{font-size:16px;max-width:580px}}
+.hero-status{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:10px;color:var(--green);letter-spacing:.06em;text-transform:uppercase}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.dot{animation:none}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border:.5px solid var(--line);border-radius:2px;margin-bottom:48px;overflow:hidden}
+.stat{padding:16px 12px;border-right:.5px solid var(--line)}
+@media(min-width:600px){.stat{padding:24px 20px}}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'DM Serif Display',serif;font-size:34px;line-height:1}
+.stat-lbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.section{display:none}.section.active{display:block}
+.sec-head{display:flex;align-items:center;gap:12px;margin:48px 0 24px}
+.section>.sec-head:first-child{margin-top:0}
+.sec-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:.5px solid var(--line);padding:5px 12px;border-radius:40px;white-space:nowrap}
+.sec-line{flex:1;height:.5px;background:var(--line)}
+p.t,.about-text{font-size:14px;line-height:1.9;color:var(--muted);margin-bottom:20px}
+@media(min-width:600px){p.t,.about-text{font-size:15px}}
+.about-text strong,p.t strong{color:var(--accent);font-weight:400}
+.pull{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(22px,4.5vw,30px);line-height:1.3;margin:8px 0 28px}
+.pull em{color:var(--muted)}
+.fig{border:.5px solid var(--line);border-radius:2px;padding:16px;margin:28px 0}
+.fig svg{display:block;width:100%;height:auto}
+.fig .cap{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+svg text{font-family:'DM Mono',ui-monospace,monospace;font-size:12px;fill:#F2F0EB}
+.ol{fill:none;stroke:#666;stroke-width:1}
+.work-item{display:flex;align-items:flex-start;padding:18px 0;border-bottom:.5px solid var(--line);cursor:pointer;gap:14px}
+.work-item:first-of-type{border-top:.5px solid var(--line)}
+.work-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);min-width:24px;padding-top:4px}
+.work-main{flex:1;min-width:0}
+.work-title{font-size:16px;color:var(--text);font-weight:400}
+.work-meta{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-top:5px}
+.work-body{font-size:14px;line-height:1.8;color:var(--muted);display:none;padding-top:12px;border-top:.5px solid var(--line);margin-top:12px}
+.work-item.open .work-body{display:block}
+.work-arrow{font-family:'DM Mono',monospace;font-size:20px;color:var(--dim);transition:transform .25s,color .2s;line-height:1}
+.work-item:hover .work-arrow,.work-item.open .work-arrow{color:var(--text)}
+.work-item.open .work-arrow{transform:rotate(45deg)}
+.skills-list{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.05em;text-transform:uppercase;padding:7px 12px;border:.5px solid var(--dim);border-radius:2px;color:var(--muted)}
+.skill-tag.bad{text-decoration:line-through;text-decoration-color:var(--dim)}
+.edu-block{padding:18px 0;border-bottom:.5px solid var(--line)}
+.edu-block:first-of-type{border-top:.5px solid var(--line)}
+.edu-name{font-size:15px}
+.edu-sub{font-size:13px;line-height:1.7;color:var(--muted);margin-top:6px}
+.mid{text-anchor:middle}
+.code{font-family:'DM Mono',ui-monospace,monospace;font-size:11px;line-height:1.7;color:var(--accent);border:.5px solid var(--line);padding:14px;margin:0 0 20px;overflow-x:auto;white-space:pre}
+.pill{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:8px 18px;border:.5px solid var(--line);border-radius:40px;color:var(--muted);text-decoration:none;transition:all .2s}
+.pill:hover{border-color:var(--text);color:var(--text)}
+.sm{font-size:10px!important}
+.footer{margin-top:72px;padding-top:24px;border-top:.5px solid var(--line)}
+.footer-name{font-family:'DM Serif Display',serif;font-size:22px;font-style:italic;color:var(--muted)}
+.ex-real{margin-top:14px;padding-top:12px;border-top:.5px solid var(--line);font-size:13px;color:var(--muted)}.ex-real b{font-family:"DM Mono",monospace;font-weight:400;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);display:block;margin-bottom:6px}.ex-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.ex-links a{font-family:"DM Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border:.5px solid var(--dim);border-radius:40px;color:var(--text);text-decoration:none}.ex-links a:hover,.ex-links a:focus-visible{border-color:var(--green);color:var(--green);outline:none}</style></head><body><div class="wrap">
+<nav><span class="nav-name">AR/VR</span><div class="nav-links">
+<button class="nav-link active" onclick="showSection('idea',this)">Idea</button>
+<button class="nav-link" onclick="showSection('translate',this)">Translate</button>
+<button class="nav-link" onclick="showSection('examples',this)">Examples</button>
+<button class="nav-link" onclick="showSection('pitfalls',this)">Pitfalls</button>
+<button class="nav-link" onclick="showSection('practice',this)">Practice</button></div></nav>
+<div class="hero"><div class="hero-label">Concept Implementation &amp; Narratives</div>
+<h1 class="hero-name">Worlds You<br><em>Step Into</em></h1>
+<p class="hero-bio">A textbook can tell you how the Roman Forum looked. A film can show you. An AR/VR experience lets you <strong style="color:var(--accent);font-weight:400">stand in it, turn your head, and decide where to walk.</strong></p>
+<p class="hero-bio">That shift from watching to being there changes how ideas must be told. This guide shows how to turn a concept and a story into something a person can actually experience.</p></div>
+
+<div id="idea" class="section active"><div class="sec-head"><span class="sec-tag">( The core idea )</span><div class="sec-line"></div></div>
+<p class="pull">In AR/VR the user is not the audience. <em>The user is the main character.</em></p>
+<p class="t">A <strong>concept</strong> is the idea you want people to understand or feel, like "coral reefs are dying" or "empathy for a wheelchair user." A <strong>narrative</strong> is the path through that idea: a beginning, a change, and a consequence. Implementation means choosing <strong>what the user sees, does, and feels</strong> at each step.</p>
+<div class="stats"><div class="stat"><div class="stat-num">VR</div><div class="stat-lbl">Replaces your world</div></div><div class="stat"><div class="stat-num">AR</div><div class="stat-lbl">Adds to your world</div></div><div class="stat"><div class="stat-num">MR</div><div class="stat-lbl">Blends both</div></div></div>
+<div class="fig"><svg viewBox="0 0 640 150" role="img" aria-label="Pipeline: Concept leads to Narrative, then Interaction, then Experience, with a feedback loop of testing.">
+<g class="mid"><rect class="ol" x="10" y="30" width="120" height="56"/><text x="70" y="62">CONCEPT</text>
+<rect class="ol" x="180" y="30" width="120" height="56"/><text x="240" y="62">NARRATIVE</text>
+<rect class="ol" x="350" y="30" width="120" height="56"/><text x="410" y="62">INTERACTION</text>
+<rect x="520" y="30" width="110" height="56" fill="none" stroke="#4ADE80"/><text x="575" y="62" style="fill:#4ADE80">EXPERIENCE</text></g>
+<g stroke="#666" fill="none"><path d="M130 58H180M300 58H350M470 58H520"/><path d="M575 86V122H70V90" stroke-dasharray="4 4"/></g>
+<text x="322" y="140" class="mid" style="fill:#8a8a8a;font-size:10px">TEST WITH REAL USERS, THEN REVISE</text></svg>
+<div class="cap">Fig. 1 — From idea to experience, with a loop back</div></div></div>
+
+<div id="translate" class="section"><div class="sec-head"><span class="sec-tag">( Translating concepts )</span><div class="sec-line"></div></div>
+<p class="pull">Every abstract idea needs a <em>physical, felt equivalent</em> the user can touch or move through.</p>
+<p class="t">Ask three questions for each part of your concept: <strong>What should the user perceive? What should they do? What should they feel?</strong> The answers become your design.</p>
+<div class="work-item" style="cursor:default;border-top:.5px solid var(--line)"><div class="work-num">—</div><div class="work-main" style="overflow-x:auto"><table style="width:100%;min-width:480px;border-collapse:collapse;font-size:13px;color:var(--muted)">
+<tr class="mono" style="font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text)"><td style="padding:6px 8px 10px 0">Abstract concept</td><td style="padding:6px 8px 10px 0">Spatial / interactive form</td><td style="padding:6px 0 10px">Feeling</td></tr>
+<tr><td style="padding:8px 8px 8px 0">Scale of the universe</td><td>Walk from your room out to the galaxy</td><td>Awe</td></tr>
+<tr><td style="padding:8px 8px 8px 0">Climate change</td><td>Watch a familiar street flood as you move forward in time</td><td>Urgency</td></tr>
+<tr><td style="padding:8px 8px 8px 0">Cell biology</td><td>Shrink and ride through a bloodstream</td><td>Curiosity</td></tr>
+<tr><td style="padding:8px 8px 8px 0">Heritage</td><td>Anchor a lost monument over the real ruins</td><td>Connection</td></tr></table></div></div>
+<div class="sec-head"><span class="sec-tag">( Narrative structures for 3D space )</span><div class="sec-line"></div></div>
+<p class="t">Unlike a film, you cannot control where the user looks. So stories in AR/VR use <strong>spatial storytelling</strong>:</p>
+<div class="edu-block"><div class="edu-name">01 — Linear guided</div><div class="edu-sub">The story moves one step at a time, with the user nudged along by sound, light, or a guide character. Best for first-time users and short lessons.</div></div>
+<div class="edu-block"><div class="edu-name">02 — Branching</div><div class="edu-sub">User choices lead to different outcomes. Good for ethics, history, or decision training, but costly to build.</div></div>
+<div class="edu-block"><div class="edu-name">03 — Environmental</div><div class="edu-sub">No fixed order. Story hides in objects, sounds, and places the user explores. Best for mystery and discovery.</div></div>
+<div class="edu-block"><div class="edu-name">04 — Embodied</div><div class="edu-sub">The user plays a role (patient, refugee, pilot) and the story is what they feel in that role.</div></div>
+<div class="sec-head"><span class="sec-tag">( Guiding attention )</span><div class="sec-line"></div></div>
+<p class="t">Use <strong>light</strong> (brighter things draw the eye), <strong>sound</strong> (3D audio from the direction of the next event), <strong>motion</strong>, and <strong>character gaze</strong>. If a user looks away from the key moment, the world should pull them back gently, not break the story.</p></div>
+
+<div id="examples" class="section"><div class="sec-head"><span class="sec-tag">( Concepts in practice )</span><div class="sec-line"></div></div>
+<div class="work-item" tabindex="0" role="button" onclick="toggleWork(this)"><div class="work-num">01</div><div class="work-main"><div class="work-title">Anatomy Lab in AR</div><div class="work-meta">Education · Mixed reality</div><div class="work-body">Imagine a life-size heart floating at your desk. Students walk around it, peel layers away, and watch blood flow. <strong style='color:var(--accent);font-weight:400'>Concept:</strong> circulation. <strong style='color:var(--accent);font-weight:400'>Narrative:</strong> follow one red blood cell around the body.<div class="ex-real"><b>See it in action</b>Case Western Reserve University's <strong>HoloAnatomy</strong> puts students in a mixed-reality headset to explore a 3D body together, instead of using only textbooks and models.<div class="ex-links"><a href="https://case.edu/holoanatomy/about/videos" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">▶ Watch HoloAnatomy videos</a><a href="https://www.sciencealert.com/here-s-how-hololens-could-revolutionise-education-with-augmented-reality" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">▶ HoloLens class demo</a></div></div></div></div><div class="work-arrow">+</div></div>
+<div class="work-item" tabindex="0" role="button" onclick="toggleWork(this)"><div class="work-num">02</div><div class="work-main"><div class="work-title">Walking Through History</div><div class="work-meta">Heritage · VR</div><div class="work-body">Students stand in an ancient marketplace at dawn. Merchants arrive, trade begins, and a guide character explains routes. The environment tells most of the story, and optional objects deepen it.<div class="ex-real"><b>See it in action</b><strong>Rome Reborn</strong> recreates over 7,000 buildings of Rome as it looked in AD 320, and the video tour lets you fly through the Forum and beyond.<div class="ex-links"><a href="https://vimeo.com/11502620" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">▶ Watch the 3D city tour</a></div></div></div></div><div class="work-arrow">+</div></div>
+<div class="work-item" tabindex="0" role="button" onclick="toggleWork(this)"><div class="work-num">03</div><div class="work-main"><div class="work-title">Empathy Simulation</div><div class="work-meta">Social impact · VR</div><div class="work-body">A user lives through someone else's hardship in the first person, so the concept is felt, not explained. A debrief afterward turns the feeling into understanding.<div class="ex-real"><b>See it in action</b>Stanford's <strong>Becoming Homeless</strong> is a 7-minute VR experience about losing your job and home. A study found it built longer-lasting empathy than reading about the same scenario.<div class="ex-links"><a href="https://vhil.stanford.edu/publications/empathydiversity/becoming-homeless-human-experience" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">▶ Watch the experience</a><a href="https://store.steampowered.com/app/738100/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">🥽 Try it on SteamVR</a></div></div></div></div><div class="work-arrow">+</div></div>
+<div class="work-item" tabindex="0" role="button" onclick="toggleWork(this)"><div class="work-num">04</div><div class="work-main"><div class="work-title">Furniture in Your Room</div><div class="work-meta">Product · AR</div><div class="work-body">The concept is 'will this fit?' The narrative is tiny: place, rotate, compare. Not every AR experience needs a plot. Sometimes the story is just the user's decision.<div class="ex-real"><b>See it in action</b><strong>IKEA Place</strong> and its newer <strong>Kreativ</strong> tool let people see furniture in their own room before buying, and Kreativ lets you scan your room, erase old furniture, and design in the app or browser.<div class="ex-links"><a href="https://www.ikea.com/gb/en/planners/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">📱 Try IKEA Kreativ</a></div></div></div></div><div class="work-arrow">+</div></div>
+<div class="work-item" tabindex="0" role="button" onclick="toggleWork(this)"><div class="work-num">05</div><div class="work-main"><div class="work-title">Ocean Under Threat</div><div class="work-meta">Awareness · VR</div><div class="work-body">Users become a scientist and watch a healthy reef change as the ocean chemistry shifts. Personal places make abstract data emotionally real.<div class="ex-real"><b>See it in action</b>Stanford's <strong>Ocean Acidification Experience</strong> lets users play a marine scientist and watch a reef decay. It is free for Quest headsets and was built with marine scientists.<div class="ex-links"><a href="https://queststoredb.com/app/stanford-ocean-acidification-experience-31541953515420265/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">🥽 Try it on Quest</a><a href="https://campustechnology.com/articles/2016/10/19/stanford-vr-project-shows-students-oceans-of-the-future.aspx" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Read how it works</a></div></div></div></div><div class="work-arrow">+</div></div></div>
+
+<div id="pitfalls" class="section"><div class="sec-head"><span class="sec-tag">( What goes wrong )</span><div class="sec-line"></div></div>
+<p class="pull">The tech is impressive. <em>The user still has to be comfortable, and have a reason to care.</em></p>
+<div class="edu-block"><div class="edu-name">Motion sickness</div><div class="edu-sub">Avoid moving the camera without the user's own movement. Use teleport steps, fixed cockpits, or vignettes.</div></div>
+<div class="edu-block"><div class="edu-name">Tech over story</div><div class="edu-sub">If you removed the headset and the idea is still unclear, the experience is a demo, not a narrative.</div></div>
+<div class="edu-block"><div class="edu-name">Overload</div><div class="edu-sub">Too many glowing objects means nobody knows where to look. Start with one clear point of focus.</div></div>
+<div class="edu-block"><div class="edu-name">Ignoring access</div><div class="edu-sub">Not everyone can stand, turn, or use hand controllers. Offer seated mode, captions, and alternate inputs.</div></div>
+<div class="edu-block"><div class="edu-name">Long sessions</div><div class="edu-sub">Aim for 5 to 15 minutes. Fatigue is real and comfort is part of the story.</div></div>
+<div class="sec-head"><span class="sec-tag">( Checklist )</span><div class="sec-line"></div></div>
+<div class="skills-list"><span class="skill-tag">One clear concept</span><span class="skill-tag">User has a role</span><span class="skill-tag">Attention guided</span><span class="skill-tag">Comfort tested</span><span class="skill-tag">Accessible</span><span class="skill-tag">Ends with meaning</span></div></div>
+
+<div id="practice" class="section"><div class="sec-head"><span class="sec-tag">( Try it yourself )</span><div class="sec-line"></div></div>
+<div class="edu-block"><div class="edu-name">01 — Concept to storyboard</div><div class="edu-sub">Pick a concept from class (photosynthesis, democracy, gravity). Sketch six frames showing what the user sees and does, from a first-person view.</div></div>
+<div class="edu-block"><div class="edu-name">02 — Attention map</div><div class="edu-sub">Draw a top-down room with a story event. Mark how light, sound, and motion will guide the user toward it.</div></div>
+<div class="edu-block"><div class="edu-name">03 — Role swap</div><div class="edu-sub">Rewrite a textbook paragraph as an embodied story: who is the user, what do they want, what blocks them?</div></div>
+<div class="edu-block"><div class="edu-name">04 — Paper prototype</div><div class="edu-sub">Act out your experience with a classmate as the user, eyes closed, while you describe the world aloud. Where do they get lost?</div></div>
+<div class="sec-head"><span class="sec-tag">( The big idea )</span><div class="sec-line"></div></div>
+<p class="pull">Good AR/VR does not show people a story. <em>It places them inside one and trusts them to care.</em></p>
+<p class="t">Start with the concept, find the human story inside it, then build only the space and interactions that story needs.</p></div>
+<div class="footer"><div class="footer-name">Now go build a world worth stepping into.</div></div></div>
+<script>
+function showSection(id,btn){document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});document.querySelectorAll('.nav-link').forEach(function(b){b.classList.remove('active')});document.getElementById(id).classList.add('active');btn.classList.add('active');window.scrollTo(0,0)}
+function toggleWork(el){el.classList.toggle('open')}
+document.addEventListener('keydown',function(e){if((e.key==='Enter'||e.key===' ')&&e.target.classList&&e.target.classList.contains('work-item')&&e.target.hasAttribute('onclick')){e.preventDefault();toggleWork(e.target)}});
+</script></body></html>
